@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include "Bullet.h"
 #include "Framerate.h"
+#include "Math.h"
 
 
 /*Game engine wrapper class*/
@@ -25,6 +26,7 @@ private:
 	Player* player;
 	Enemy* enemy;
 	Framerate* frameRate;
+	Math* math;
 
 	//textures container for the game
 	std::map<std::string, sf::Texture*> textures;
@@ -36,7 +38,7 @@ private:
 	void createPlayer();
 	void createEnemy();
 	void createFramerateInformation();
-
+	void createMathSystem();
 
 public:
 

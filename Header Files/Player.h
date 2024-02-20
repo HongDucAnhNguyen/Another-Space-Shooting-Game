@@ -7,12 +7,15 @@ private:
 	sf::Sprite playerSprite;
 	sf::Texture playerTexture;
 	float playerSpeed;
-	int damage;
 
 	float shootingCooldown;
 	float shootingCooldownMax;
 
 
+public:
+	int damage;
+
+private:
 
 	void initPlayer();
 
