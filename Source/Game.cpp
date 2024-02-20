@@ -1,13 +1,15 @@
 #include "../Header Files/Game.h"
 #include <iostream>
 
-Game::Game() : window(nullptr), delta_time(0)
+Game::Game() : window(nullptr), delta_time(0), player(nullptr), enemy(nullptr),
+frameRate(nullptr), math(nullptr)
 {
 	this->initWindow();
 	this->initTextures();
 	this->createPlayer();
 	this->createEnemy();
 	this->createFramerateInformation();
+	this->createMathSystem();
 
 }
 
@@ -17,6 +19,7 @@ Game::~Game()
 	delete this->player;
 	delete this->enemy;
 	delete this->frameRate;
+	delete this->math;
 
 
 	//delete textures
@@ -65,6 +68,9 @@ void Game::createEnemy()
 void Game::createFramerateInformation() {
 
 	this->frameRate = new Framerate();
+}
+void Game::createMathSystem() {
+	this->math = new Math();
 }
 
 /*Game entities creation*/
@@ -207,6 +213,34 @@ void Game::updateBullets()
 
 
 		}
+		else {
+			if (math->checkAABBCollision(this->bullets[index_offset]->getBounds(),
+				this->enemy->getBounds())) {
+
+
+				if (this->enemy->hp <= 0) {
+					this->enemy->hp = 0;
+				}
+
+
+				else {
+					this->enemy->boundingRect.setOutlineColor(sf::Color::Yellow);
+					this->enemy->hp -= this->player->damage;
+					std::cout << "enemy hit" << std::endl;
+					std::cout << "enemy health: " << this->enemy->hp << std::endl;
+					delete this->bullets.at(index_offset);
+
+					this->bullets.erase(this->bullets.begin() + index_offset);
+
+					std::cout << "bullet deleted" << std::endl;
+				}
+
+
+			}
+
+		}
+
+
 
 
 

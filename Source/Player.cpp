@@ -6,7 +6,7 @@ void Player::initPlayer()
 	this->playerSprite.setTextureRect(sf::IntRect(0, 0, 392, 338));
 	this->playerSprite.scale(0.2f, 0.2f);
 
-	this->playerSprite.setPosition(100, 100);
+	this->playerSprite.setPosition(400, 500);
 }
 
 void Player::initTexture()
